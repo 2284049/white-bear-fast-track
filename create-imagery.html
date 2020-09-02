@@ -1,0 +1,89 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>White Bear</title>
+      <link href="/style/dist.css" rel="stylesheet" />
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <div
+               class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"
+            >
+               <img src="icons/logo-app.svg" width="32px" />
+               <h3 class="d-inline text-brand text-dark">White Bear</h3>
+               <button class="btn btn-link float-right mt-n1">Log out</button>
+               <div class="clearfix"></div>
+               <div
+                  class="btn-group d-flex mt-1"
+                  role="navigation"
+                  aria-label="navigation"
+               >
+                  <button type="button" class="btn btn-secondary tab-active">
+                     Create new
+                  </button>
+                  <button type="button" class="btn btn-secondary tab-separator">
+                     Review
+                  </button>
+                  <button type="button" class="btn btn-secondary tab-separator">
+                     All cards
+                  </button>
+               </div>
+
+               <p class="text-center lead text-muted my-2">
+                  Add memorable imagery
+               </p>
+
+               <div class="ml-5 mr-5">
+                  <div class="card">
+                     <div class="card-body bg-primary lead">
+                        <!-- We put in two different text areas 
+                            for the mockup depending on screen size, 
+                            so that 300 characters would show without 
+                            having scroll bars. d-md-none and d-md-block-->
+                        <!-- Autofocus is an attribute so the cursor is
+                        automatically blinking when the page loads. -->
+                        <textarea
+                           rows="11"
+                           class="d-md-none"
+                           autofocus
+                        ></textarea>
+                        <textarea
+                           rows="6"
+                           class="d-none d-md-block"
+                           autofocus
+                        ></textarea>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-body bg-secondary lead">
+                        One morning, when Gregor Samsa woke from troubled
+                        dreams, he found himself transformed in his bed into a
+                        horrible vermin. He lay on his armour-like back, and if
+                        he lifted his head a little he could se
+                     </div>
+                  </div>
+
+                  <p class="float-right mt-2 mb-5">0/240</p>
+
+                  <div class="clearfix"></div>
+
+                  <button class="btn btn-link mt-1">Back to answer</button>
+                  <button class="btn btn-primary btn-lg ml-4 float-right">
+                     <img
+                        src="/icons/save.svg"
+                        width="20px"
+                        style="
+                           margin-bottom: 3px;
+                           margin-right: 5px;
+                           margin-left: -1px;
+                        "
+                     />Save
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
