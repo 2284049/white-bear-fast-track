@@ -75,3 +75,8 @@ textarea {
    box-shadow: none;
    resize: none; /*remove the resize handle on the bottom right*/
 }
+
+.bg-success,
+.bg-danger {
+   color: $white;
+}

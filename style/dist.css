@@ -11418,4 +11418,9 @@ textarea {
   /*remove the resize handle on the bottom right*/
 }
 
+.bg-success,
+.bg-danger {
+  color: #fff;
+}
+
 /*# sourceMappingURL=dist.css.map */
