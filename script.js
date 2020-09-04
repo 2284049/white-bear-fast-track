@@ -5,3 +5,8 @@ $("#save-card").click(function () {
 $("#show-delete").click(function () {
    $("#delete-button").removeClass("d-none");
 });
+
+$("#sign-up-button").click(function () {
+   $("#intro-card").toggle();
+   $("#create-account-card").toggle();
+});

@@ -2,7 +2,118 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
+      <title>White Bear</title>
+      <link href="/style/dist.css" rel="stylesheet" />
    </head>
-   <body></body>
+   <body>
+      <div class="background-image">
+         <div class="container">
+            <div class="row justify-content-center">
+               <div class="col-5">
+                  <div class="card" id="intro-card">
+                     <div class="card-body text-dark">
+                        <h2>Nice to meet you</h2>
+                        <p class="font-sans-serif mt-3 mb-5">
+                           Sign up for White Bear. Free Forever.
+                        </p>
+                        <button
+                           class="btn btn-success btn-lg font-sans-serif"
+                           style="width: 100%"
+                           id="sign-up-button"
+                        >
+                           Sign up
+                        </button>
+                     </div>
+                  </div>
+                  <div
+                     class="card"
+                     id="create-account-card"
+                     style="display: none"
+                  >
+                     <div class="card-body text-dark">
+                        <h2>Nice to meet you</h2>
+                        <p class="font-sans-serif mt-3 mb-5">
+                           Sign up for White Bear. Free Forever.
+                        </p>
+                        <div class="form-group">
+                           <label
+                              for="email-input"
+                              class="text-muted lead font-sans-serif"
+                              >Email address</label
+                           >
+                           <input
+                              type="email"
+                              class="form-control"
+                              id="email-input"
+                           />
+                        </div>
+                        <div class="form-group">
+                           <label
+                              for="password-input"
+                              class="text-muted lead font-sans-serif"
+                              >Create a password</label
+                           >
+                           <input
+                              type="email"
+                              class="form-control"
+                              id="password-input"
+                           />
+                        </div>
+                        <button
+                           class="float-right btn btn-success btn-lg font-sans-serif"
+                           style="width: 100%"
+                        >
+                           Let's go!
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-5">
+                  <div class="card ml-8">
+                     <div class="card-body text-dark">
+                        <h2>Welcome back</h2>
+                        <p class="font-sans-serif mt-3 mb-5">
+                           Log in with your email address and password.
+                        </p>
+                        <div class="form-group">
+                           <label
+                              for="email-input"
+                              class="text-muted lead font-sans-serif"
+                              >Email address</label
+                           >
+                           <input
+                              type="email"
+                              class="form-control"
+                              id="email-input"
+                           />
+                        </div>
+                        <div class="form-group">
+                           <label
+                              for="password-input"
+                              class="text-muted lead font-sans-serif"
+                              >Password</label
+                           >
+                           <input
+                              type="email"
+                              class="form-control"
+                              id="password-input"
+                           />
+                        </div>
+                        <button
+                           class="float-right btn btn-success btn-lg font-sans-serif"
+                        >
+                           Log in
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+         defer
+      ></script>
+      <script src="/script.js" defer></script>
+   </body>
 </html>

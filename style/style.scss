@@ -15,13 +15,13 @@ Example:
 
 */
 
-// .background-image {
-//   /* https://css-tricks.com/perfect-full-page-background-image/ */
-//   background: url("../images/background-landing.jpg") no-repeat center center
-//     fixed;
-//   background-size: cover;
-//   min-height: 100vh;
-// }
+.background-image {
+   /* https://css-tricks.com/perfect-full-page-background-image/ */
+   background: url("../images/background-landing.jpg") no-repeat center center
+      fixed;
+   background-size: cover;
+   min-height: 100vh;
+}
 
 .text-brand {
    font-family: $font-family-brand;
@@ -79,4 +79,8 @@ textarea {
 .bg-success,
 .bg-danger {
    color: $white;
+}
+
+.font-sans-serif {
+   font-family: $font-family-sans-serif;
 }
