@@ -1,0 +1,52 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>White Bear</title>
+      <link href="/style/dist.css" rel="stylesheet" />
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <div
+               class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"
+            >
+               <img src="icons/logo-app.svg" width="32px" />
+               <h3 class="d-inline text-brand text-dark">White Bear</h3>
+               <button class="btn btn-link float-right mt-n1">Log out</button>
+               <div class="clearfix"></div>
+               <div
+                  class="btn-group d-flex mt-1 mb-5"
+                  role="navigation"
+                  aria-label="navigation"
+               >
+                  <button type="button" class="btn btn-secondary">
+                     Create new
+                  </button>
+                  <button
+                     type="button"
+                     class="btn btn-secondary tab-separator tab-active"
+                  >
+                     Review
+                  </button>
+                  <button type="button" class="btn btn-secondary tab-separator">
+                     All cards
+                  </button>
+               </div>
+
+               <p class="text-center lead text-muted my-2">Out of cards</p>
+
+               <button class="btn btn-link mt-1">Previous card</button>
+               <button class="btn btn-outline-primary float-right">
+                  Get more cards
+               </button>
+            </div>
+         </div>
+      </div>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+         defer
+      ></script>
+      <script src="/script.js" defer></script>
+   </body>
+</html>
