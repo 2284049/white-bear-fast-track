@@ -1,0 +1,130 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>White Bear</title>
+      <link href="/style/dist.css" rel="stylesheet" />
+   </head>
+   <body>
+      <div
+         class="bg-success w-100 lead d-none justify-content-center fixed-top"
+         id="overlay-success"
+      >
+         <img src="/icons/success.svg" width="32px" />
+         <p class="d-inline py-4 ml-2">Card created!</p>
+      </div>
+
+      <div class="container">
+         <div class="row">
+            <div
+               class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"
+            >
+               <img src="icons/logo-app.svg" width="32px" />
+               <h3 class="d-inline text-brand text-dark">White Bear</h3>
+               <button class="btn btn-link float-right mt-n1">Log out</button>
+               <div class="clearfix"></div>
+               <div
+                  class="btn-group d-flex mt-1"
+                  role="navigation"
+                  aria-label="navigation"
+               >
+                  <button type="button" class="btn btn-secondary">
+                     Create new
+                  </button>
+                  <button type="button" class="btn btn-secondary tab-separator">
+                     Review
+                  </button>
+                  <a
+                     href="/all-cards.html"
+                     class="btn btn-secondary tab-separator tab-active"
+                  >
+                     All cards
+                  </a>
+               </div>
+
+               <p class="text-center lead text-muted my-2">Edit card</p>
+
+               <div class="card">
+                  <div class="card-body bg-primary lead">
+                     The European languages are members of the same family.
+                     Their separate existence is a myth. For science, music,
+                     sport, etc, Europe uses the same vocabulary. The languages
+                     only differ in their grammar,
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-body bg-secondary lead">
+                     One morning, when Gregor Samsa woke from troubled dreams,
+                     he found himself transformed in his bed into a horrible
+                     vermin. He lay on his armour-like back, and if he lifted
+                     his head a little he could se
+                  </div>
+               </div>
+
+               <p class="float-right mt-2 mb-5 text-muted">0/240</p>
+
+               <div class="clearfix"></div>
+
+               <button class="btn btn-link mt-1">Discard changes</button>
+               <button
+                  class="btn btn-primary btn-lg ml-4 float-right"
+                  id="save-card"
+               >
+                  <img
+                     src="/icons/save.svg"
+                     width="20px"
+                     style="
+                        margin-bottom: 3px;
+                        margin-right: 5px;
+                        margin-left: -1px;
+                     "
+                  />Save
+               </button>
+
+               <p class="text-center lead text-muted my-5">Card properties</p>
+
+               <div class="row">
+                  <div class="col-4">
+                     <p class="text-muted mt-1">Created on:</p>
+                     <p class="text-muted mt-1">Last attempt:</p>
+                     <p class="text-muted mt-1">Next attempt:</p>
+                     <p class="text-muted mt-1">Consecutives:</p>
+                  </div>
+                  <div class="col-8">
+                     <p class="mt-1">Dec. 24, 2019</p>
+                     <p class="mt-1">Dec. 31, 2019</p>
+                     <p class="mt-1">Jul. 14, 2020</p>
+                     <p class="mt-1">4</p>
+                  </div>
+               </div>
+
+               <div class="custom-control custom-checkbox mt-5 mb-3">
+                  <input
+                     type="checkbox"
+                     class="custom-control-input"
+                     id="show-delete"
+                  />
+                  <label
+                     class="custom-control-label text-muted"
+                     for="show-delete"
+                     >Show delete button</label
+                  >
+               </div>
+
+               <button
+                  type="button"
+                  class="btn btn-outline-danger d-none"
+                  id="delete-button"
+               >
+                  Delete this card
+               </button>
+            </div>
+         </div>
+      </div>
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+         defer
+      ></script>
+      <script src="/script.js" defer></script>
+   </body>
+</html>

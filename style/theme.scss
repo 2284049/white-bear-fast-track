@@ -239,3 +239,7 @@ $input-height-lg: add(
    $text-height,
    add($input-padding-y-lg * 2, $border-width * 2, false)
 );
+
+// Custom controls
+$component-active-bg: theme-color("primary");
+$custom-control-indicator-checked-bg: $component-active-bg;
