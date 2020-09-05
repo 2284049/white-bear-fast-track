@@ -8,68 +8,69 @@
    <body>
       <div class="background-image">
          <div class="container">
+            <div class="row mb-8">
+               <div class="col-5 col-sm-4 col-xl-2 mt-6">
+                  <img src="images/logo-landing.png" class="float-right" />
+               </div>
+               <div class="col-7 col-sm-8 col-xl-10 mt-6">
+                  <h1 class="d-inline text-brand text-light">White Bear</h1>
+               </div>
+            </div>
             <div class="row justify-content-center">
-               <div class="col-5">
-                  <div class="card" id="intro-card">
+               <div class="col-12 col-lg-5">
+                  <div class="card">
                      <div class="card-body text-dark">
                         <h2>Nice to meet you</h2>
                         <p class="font-sans-serif mt-3 mb-5">
                            Sign up for White Bear. Free Forever.
                         </p>
-                        <button
-                           class="btn btn-success btn-lg font-sans-serif"
-                           style="width: 100%"
-                           id="sign-up-button"
-                        >
-                           Sign up
-                        </button>
-                     </div>
-                  </div>
-                  <div
-                     class="card"
-                     id="create-account-card"
-                     style="display: none"
-                  >
-                     <div class="card-body text-dark">
-                        <h2>Nice to meet you</h2>
-                        <p class="font-sans-serif mt-3 mb-5">
-                           Sign up for White Bear. Free Forever.
-                        </p>
-                        <div class="form-group">
-                           <label
-                              for="email-input"
-                              class="text-muted lead font-sans-serif"
-                              >Email address</label
+                        <div id="intro-card">
+                           <button
+                              class="btn btn-success btn-lg font-sans-serif"
+                              style="width: 100%"
+                              id="sign-up-button"
                            >
-                           <input
-                              type="email"
-                              class="form-control"
-                              id="email-input"
-                           />
+                              Sign up
+                           </button>
                         </div>
-                        <div class="form-group">
-                           <label
-                              for="password-input"
-                              class="text-muted lead font-sans-serif"
-                              >Create a password</label
+                        <div id="create-account-card" style="display: none">
+                           <div class="form-group">
+                              <label
+                                 for="email-input"
+                                 class="text-muted lead font-sans-serif"
+                                 >Email address</label
+                              >
+                              <input
+                                 type="email"
+                                 class="form-control"
+                                 id="email-input"
+                              />
+                           </div>
+                           <div class="form-group">
+                              <label
+                                 for="password-input"
+                                 class="text-muted lead font-sans-serif"
+                                 >Create a password</label
+                              >
+                              <input
+                                 type="email"
+                                 class="form-control"
+                                 id="password-input"
+                              />
+                           </div>
+                           <a
+                              href="create-answer.html"
+                              class="float-right btn btn-success btn-lg font-sans-serif"
+                              style="width: 100%"
                            >
-                           <input
-                              type="email"
-                              class="form-control"
-                              id="password-input"
-                           />
+                              Let's go!
+                           </a>
                         </div>
-                        <button
-                           class="float-right btn btn-success btn-lg font-sans-serif"
-                           style="width: 100%"
-                        >
-                           Let's go!
-                        </button>
                      </div>
                   </div>
                </div>
-               <div class="col-5">
-                  <div class="card ml-8">
+               <div class="col-12 col-lg-5">
+                  <div class="card mt-8 mt-lg-0 ml-lg-8">
                      <div class="card-body text-dark">
                         <h2>Welcome back</h2>
                         <p class="font-sans-serif mt-3 mb-5">
@@ -99,11 +100,12 @@
                               id="password-input"
                            />
                         </div>
-                        <button
+                        <a
+                           href="create-answer.html"
                            class="float-right btn btn-success btn-lg font-sans-serif"
                         >
                            Log in
-                        </button>
+                        </a>
                      </div>
                   </div>
                </div>

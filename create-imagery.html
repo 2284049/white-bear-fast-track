@@ -7,11 +7,18 @@
    </head>
    <body>
       <div
-         class="bg-success w-100 lead d-none justify-content-center fixed-top"
+         class="bg-success w-100 lead justify-content-center d-none fixed-top"
          id="overlay-success"
       >
          <img src="/icons/success.svg" width="32px" />
          <p class="d-inline py-4 ml-2">Card created!</p>
+      </div>
+      <div
+         class="bg-danger w-100 lead justify-content-center d-none fixed-top"
+         id="overlay-error"
+      >
+         <img src="/icons/error.svg" width="32px" />
+         <p class="d-inline py-4 ml-2">Oops! Our bad. Please try again.</p>
       </div>
 
       <div class="container">
@@ -21,19 +28,27 @@
             >
                <img src="icons/logo-app.svg" width="32px" />
                <h3 class="d-inline text-brand text-dark">White Bear</h3>
-               <button class="btn btn-link float-right mt-n1">Log out</button>
+               <a href="index.html" class="btn btn-link float-right mt-n1"
+                  >Log out</a
+               >
                <div class="clearfix"></div>
                <div
                   class="btn-group d-flex mt-1"
                   role="navigation"
                   aria-label="navigation"
                >
-                  <button type="button" class="btn btn-secondary tab-active">
+                  <a
+                     href="create-answer.html"
+                     class="btn btn-secondary tab-active"
+                  >
                      Create new
-                  </button>
-                  <button type="button" class="btn btn-secondary tab-separator">
+                  </a>
+                  <a
+                     href="review-imagery.html"
+                     class="btn btn-secondary tab-separator"
+                  >
                      Review
-                  </button>
+                  </a>
                   <a
                      href="/all-cards.html"
                      class="btn btn-secondary tab-separator"
@@ -46,56 +61,52 @@
                   Add memorable imagery
                </p>
 
-               <div class="ml-5 mr-5">
-                  <div class="card">
-                     <div class="card-body bg-primary lead">
-                        <!-- We put in two different text areas 
+               <div class="card">
+                  <div class="card-body bg-primary lead">
+                     <!-- We put in two different text areas 
                             for the mockup depending on screen size, 
                             so that 300 characters would show without 
                             having scroll bars. d-md-none and d-md-block-->
-                        <!-- Autofocus is an attribute so the cursor is
+                     <!-- Autofocus is an attribute so the cursor is
                         automatically blinking when the page loads. -->
-                        <textarea
-                           rows="11"
-                           class="d-md-none"
-                           autofocus
-                        ></textarea>
-                        <textarea
-                           rows="6"
-                           class="d-none d-md-block"
-                           autofocus
-                        ></textarea>
-                     </div>
+                     <textarea rows="11" class="d-md-none" autofocus></textarea>
+                     <textarea
+                        rows="6"
+                        class="d-none d-md-block"
+                        autofocus
+                     ></textarea>
                   </div>
-                  <div class="card">
-                     <div class="card-body bg-secondary lead">
-                        One morning, when Gregor Samsa woke from troubled
-                        dreams, he found himself transformed in his bed into a
-                        horrible vermin. He lay on his armour-like back, and if
-                        he lifted his head a little he could se
-                     </div>
-                  </div>
-
-                  <p class="float-right mt-2 mb-5 text-muted">0/240</p>
-
-                  <div class="clearfix"></div>
-
-                  <button class="btn btn-link mt-1">Back to answer</button>
-                  <button
-                     class="btn btn-primary btn-lg ml-4 float-right"
-                     id="save-card"
-                  >
-                     <img
-                        src="/icons/save.svg"
-                        width="20px"
-                        style="
-                           margin-bottom: 3px;
-                           margin-right: 5px;
-                           margin-left: -1px;
-                        "
-                     />Save
-                  </button>
                </div>
+               <div class="card">
+                  <div class="card-body bg-secondary lead">
+                     One morning, when Gregor Samsa woke from troubled dreams,
+                     he found himself transformed in his bed into a horrible
+                     vermin. He lay on his armour-like back, and if he lifted
+                     his head a little he could se
+                  </div>
+               </div>
+
+               <p class="float-right mt-2 mb-5 text-muted">0/240</p>
+
+               <div class="clearfix"></div>
+
+               <button class="btn btn-link mt-1" id="back-to-answer">
+                  Back to answer
+               </button>
+               <button
+                  class="btn btn-primary btn-lg ml-4 float-right"
+                  id="save-card"
+               >
+                  <img
+                     src="/icons/save.svg"
+                     width="20px"
+                     style="
+                        margin-bottom: 3px;
+                        margin-right: 5px;
+                        margin-left: -1px;
+                     "
+                  />Save
+               </button>
             </div>
          </div>
       </div>
