@@ -55,6 +55,7 @@ $grays: map-merge(
 $blue: $blue-600;
 $red: $red-600;
 $gray: $gray-600;
+$wine: #9b0e27;
 
 $colors: ();
 $colors: map-merge(
@@ -64,11 +65,12 @@ $colors: map-merge(
       "white": $white,
       "gray": $gray,
       "gray-dark": $gray-800,
+      "wine": $wine,
    ),
    $colors
 );
 
-$primary: $gray;
+$primary: $wine;
 $secondary: $gray-700;
 $success: $blue;
 $danger: $red;
