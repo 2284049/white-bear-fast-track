@@ -24,7 +24,7 @@
                         <p class="font-sans-serif mt-3">
                            Sign up for White Bear. Free Forever.
                         </p>
-                        <div id="intro-card">
+                        <!-- <div id="intro-card">
                            <button
                               class="btn btn-success btn-lg font-sans-serif mt-5"
                               style="width: 100%"
@@ -32,42 +32,60 @@
                            >
                               Sign up
                            </button>
-                        </div>
-                        <div id="create-account-card" style="display: none">
+                        </div> -->
+                        <div id="create-account-card" class="">
                            <p class="text-blue font-sans-serif mt-2 mb-5">
                               Let's get you signed up.
                            </p>
                            <div class="form-group">
                               <label
-                                 for="email-input"
+                                 for="email-sign-up"
                                  class="text-muted lead font-sans-serif"
                                  >Email address</label
                               >
                               <input
                                  type="email"
                                  class="form-control"
-                                 id="email-input"
+                                 id="email-sign-up"
                               />
+                              <p
+                                 class="text-danger d-none"
+                                 id="enter-email-error"
+                              >
+                                 Please enter your email address.
+                              </p>
                            </div>
                            <div class="form-group">
                               <label
-                                 for="password-input"
+                                 for="password-sign-up"
                                  class="text-muted lead font-sans-serif"
                                  >Create a password</label
                               >
                               <input
                                  type="email"
                                  class="form-control"
-                                 id="password-input"
+                                 id="password-sign-up"
                               />
+                              <p
+                                 class="text-danger d-none"
+                                 id="password-min-char-error"
+                              >
+                                 Your password must be at least 9 characters.
+                              </p>
+                              <p
+                                 class="text-danger d-none"
+                                 id="password-blank-error"
+                              >
+                                 Please create a password.
+                              </p>
                            </div>
-                           <a
-                              href="create-answer.html"
+                           <button
                               class="float-right btn btn-success btn-lg font-sans-serif"
                               style="width: 100%"
+                              id="lets-go"
                            >
                               Let's go!
-                           </a>
+                           </button>
                         </div>
                      </div>
                   </div>

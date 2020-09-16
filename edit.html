@@ -48,32 +48,39 @@
 
                <div class="card">
                   <div class="card-body bg-primary lead">
-                     The European languages are members of the same family.
-                     Their separate existence is a myth. For science, music,
-                     sport, etc, Europe uses the same vocabulary. The languages
-                     only differ in their grammar,
+                     <textarea
+                        rows="6"
+                        id="edit-imagery-input"
+                        autofocus
+                     ></textarea>
                   </div>
                </div>
                <div class="card">
                   <div class="card-body bg-secondary lead">
-                     One morning, when Gregor Samsa woke from troubled dreams,
-                     he found himself transformed in his bed into a horrible
-                     vermin. He lay on his armour-like back, and if he lifted
-                     his head a little he could se
+                     <textarea
+                        rows="6"
+                        id="edit-answer-input"
+                        
+                     ></textarea>
                   </div>
                </div>
 
-               <p class="float-right mt-2 mb-5 text-muted">0/240</p>
-
+               <p class="float-right mt-2 mb-5 text-muted">
+                  <span id="edit-imagery-characters">Top: 
+                     <span id="edit-imagery-char-count">0</span>/240</span>
+                     &nbsp;&nbsp; 
+                     <span id="edit-answer-characters">Bottom: 
+                        <span id="edit-answer-char-count">0</span>/240</span>
                <div class="clearfix"></div>
 
                <a href="all-cards.html" class="btn btn-link mt-1"
                   >Discard changes</a
                >
-               <a
+               <button
                   href="all-cards.html"
                   class="btn btn-primary btn-lg ml-4 float-right"
-                  id="save-card"
+                  id="edit-save"
+                  disabled
                >
                   <img
                      src="/icons/save.svg"
@@ -84,7 +91,7 @@
                         margin-left: -1px;
                      "
                   />Save
-               </a>
+                     </button>
 
                <p class="text-center lead text-muted my-5">Card properties</p>
 

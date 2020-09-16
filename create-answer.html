@@ -60,23 +60,34 @@
                             having scroll bars. d-md-none and d-md-block-->
                      <!-- Autofocus is an attribute so the cursor is
                         automatically blinking when the page loads. -->
-                     <textarea rows="11" class="d-md-none" autofocus></textarea>
+                     <!-- Commenting the first textarea out, to focus on character counts
+                        <textarea rows="11" class="d-md-none" autofocus></textarea> -->
                      <textarea
                         rows="6"
-                        class="d-none d-md-block"
+                        id="create-answer-input"
                         autofocus
                      ></textarea>
                   </div>
                </div>
 
-               <p class="float-right mt-2 mb-5 text-muted">0/240</p>
+               <p
+                  id="answer-characters"
+                  class="float-right mt-2 mb-5 text-muted"
+               >
+                  <span id="answer-char-count">0</span>/240
+               </p>
 
                <div class="clearfix"></div>
 
                <div class="float-right">
-                  <a href="create-imagery.html" class="btn btn-outline-primary"
-                     >Next</a
+                  <button
+                     href="create-imagery.html"
+                     id="next"
+                     disabled="disabled"
+                     class="btn btn-outline-primary"
                   >
+                     Next
+                  </button>
                </div>
             </div>
          </div>
