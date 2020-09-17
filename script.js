@@ -1,3 +1,4 @@
+const maxChar = 240;
 $("#save-card").click(function () {
    $("#overlay-success").toggleClass("d-flex d-none");
 });
@@ -66,12 +67,11 @@ $("#edit-imagery-input").keyup(function (e) {
    console.log(`The user inputted: ${text}`);
    const textLength = text.length;
    console.log(`The length of the text is: ${textLength}`);
-   if (textLength < 241 && textLength > 0) {
+
+   if (textLength <= 240 && textLength >= 0) {
       $("#edit-imagery-characters").removeClass("text-danger");
-   } else if (textLength > 240) {
+   } else {
       $("#edit-imagery-characters").addClass("text-danger");
-   } else if (textLength === 0) {
-      $("#edit-imagery-characters").removeClass("text-danger");
    }
    const imageryInput = $("#edit-imagery-input").val();
    console.log(`The user inputted: ${imageryInput}`);
@@ -84,12 +84,15 @@ $("#edit-imagery-input").keyup(function (e) {
 
    if (
       imageryInputLength > 0 &&
-      imageryInputLength < 241 &&
+      imageryInputLength <= maxChar &&
       answerInputLength > 0 &&
-      answerInputLength < 241
+      answerInputLength <= maxChar
    ) {
       $("#edit-save").removeAttr("disabled");
+   } else {
+      $("#edit-save").attr("disabled", "disabled");
    }
+
    // update the character counter
    $("#edit-imagery-char-count").html(textLength);
 });
@@ -124,6 +127,14 @@ $("#edit-answer-input").keyup(function (e) {
    ) {
       $("#edit-save").removeAttr("disabled");
    }
+   if (
+      imageryInputLength === 0 ||
+      imageryInputLength > 240 ||
+      answerInputLength === 0 ||
+      answerInputLength > 240
+   ) {
+      $("#edit-save").attr("disabled", "disabled");
+   }
    // update the character counter
    $("#edit-answer-char-count").html(textLength);
 });
@@ -144,6 +155,11 @@ $("#sign-up-button").click(function () {
 $("#lets-go").click(function () {
    const email = $("#email-sign-up").val();
    console.log(`The user inputted: ${email}`);
+   const trimmedEmail = email.trim();
+   const lowerCasedEmail = trimmedEmail.toLowerCase();
+   console.log(
+      `The user's trimmed and lower cased email address: ${lowerCasedEmail}`
+   );
 
    // check the length of the email address
    const emailLength = email.length;
@@ -151,9 +167,29 @@ $("#lets-go").click(function () {
    if (emailLength === 0) {
       $("#email-sign-up").addClass("is-invalid");
       $("#enter-email-error").removeClass("d-none");
+   } else if (emailLength > 0) {
+      $("#email-sign-up").removeClass("is-invalid");
+      $("#email-sign-up").addClass("is-valid");
+      $("#enter-email-error").addClass("d-none");
    }
+
+   const delimiter = "@";
+   const indexOfEmailAtDelimiter = lowerCasedEmail.indexOf(delimiter);
+   const localPartEmail = lowerCasedEmail.slice(0, indexOfEmailAtDelimiter);
+   console.log(
+      `This is the user inputted local part of email: ${localPartEmail}`
+   );
+
+   const localPartEmailLength = localPartEmail.length;
+   console.log(`The lenght of the local part of the inputted email is: `);
+
    const password = $("#password-sign-up").val();
    console.log(`The user inputted: ${password}`);
+
+   const lowerCasedPassword = password.toLowerCase();
+   console.log(
+      `The user inputted lower cased password is: ${lowerCasedPassword}`
+   );
 
    const passwordLength = password.length;
    console.log(`The length of the password is: ${passwordLength}`);
@@ -161,8 +197,26 @@ $("#lets-go").click(function () {
    if (passwordLength === 0) {
       $("#password-sign-up").addClass("is-invalid");
       $("#password-blank-error").removeClass("d-none");
+      $("#password-min-char-error").addClass("d-none");
+      $("#local-part-email-password-error").addClass("d-none");
    } else if (passwordLength < 9 && passwordLength > 0) {
       $("#password-sign-up").addClass("is-invalid");
       $("#password-min-char-error").removeClass("d-none");
+      $("#password-blank-error").addClass("d-none");
+      $("#local-part-email-password-error").addClass("d-none");
+   } else if (
+      lowerCasedPassword.includes(localPartEmail) &&
+      localPartEmailLength >= 4
+   ) {
+      $("#password-sign-up").addClass("is-invalid");
+      $("#password-min-char-error").addClass("d-none");
+      $("#password-blank-error").addClass("d-none");
+      $("#local-part-email-password-error").removeClass("d-none");
+   } else {
+      $("#password-sign-up").removeClass("is-invalid");
+      $("#password-sign-up").addClass("is-valid");
+      $("#password-min-char-error").addClass("d-none");
+      $("#password-blank-error").addClass("d-none");
+      $("#local-part-email-password-error").addClass("d-none");
    }
 });
