@@ -85,6 +85,15 @@
                                  All or part of your email address cannot be
                                  used in your password.
                               </p>
+                              <p
+                                 class="text-danger d-none"
+                                 id="most-insecure-passwords-error"
+                              >
+                                 Your password contains a commonly used
+                                 password, “<span id="insecure-password"></span
+                                 >” and can be easily discovered by attackers.
+                                 Please use something else.
+                              </p>
                            </div>
                            <button
                               class="float-right btn btn-success btn-lg font-sans-serif"
@@ -144,6 +153,7 @@
          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
          defer
       ></script>
+      <script src="/mostInsecurePasswords.js" defer></script>
       <script src="/script.js" defer></script>
    </body>
 </html>

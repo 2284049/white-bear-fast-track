@@ -103,12 +103,10 @@ $("#edit-answer-input").keyup(function (e) {
    console.log(`The user inputted: ${text}`);
    const textLength = text.length;
    console.log(`The length of the text is: ${textLength}`);
-   if (textLength < 241 && textLength > 0) {
+   if (textLength < 241 && textLength >= 0) {
       $("#edit-answer-characters").removeClass("text-danger");
-   } else if (textLength > 240) {
+   } else {
       $("#edit-answer-characters").addClass("text-danger");
-   } else if (textLength === 0) {
-      $("#edit-answer-characters").removeClass("text-danger");
    }
    const imageryInput = $("#edit-imagery-input").val();
    console.log(`The user inputted: ${imageryInput}`);
@@ -126,13 +124,7 @@ $("#edit-answer-input").keyup(function (e) {
       answerInputLength < 241
    ) {
       $("#edit-save").removeAttr("disabled");
-   }
-   if (
-      imageryInputLength === 0 ||
-      imageryInputLength > 240 ||
-      answerInputLength === 0 ||
-      answerInputLength > 240
-   ) {
+   } else {
       $("#edit-save").attr("disabled", "disabled");
    }
    // update the character counter
@@ -199,11 +191,13 @@ $("#lets-go").click(function () {
       $("#password-blank-error").removeClass("d-none");
       $("#password-min-char-error").addClass("d-none");
       $("#local-part-email-password-error").addClass("d-none");
+      $("#most-insecure-passwords-error").addClass("d-none");
    } else if (passwordLength < 9 && passwordLength > 0) {
       $("#password-sign-up").addClass("is-invalid");
       $("#password-min-char-error").removeClass("d-none");
       $("#password-blank-error").addClass("d-none");
       $("#local-part-email-password-error").addClass("d-none");
+      $("#most-insecure-passwords-error").addClass("d-none");
    } else if (
       lowerCasedPassword.includes(localPartEmail) &&
       localPartEmailLength >= 4
@@ -212,11 +206,20 @@ $("#lets-go").click(function () {
       $("#password-min-char-error").addClass("d-none");
       $("#password-blank-error").addClass("d-none");
       $("#local-part-email-password-error").removeClass("d-none");
+      $("#most-insecure-passwords-error").addClass("d-none");
+   } else if (mostInsecurePasswords.includes(lowerCasedPassword)) {
+      $("#password-sign-up").addClass("is-invalid");
+      $("#password-min-char-error").addClass("d-none");
+      $("#password-blank-error").addClass("d-none");
+      $("#local-part-email-password-error").addClass("d-none");
+      $("#most-insecure-passwords-error").removeClass("d-none");
+      $("#insecure-password").html(lowerCasedPassword);
    } else {
       $("#password-sign-up").removeClass("is-invalid");
       $("#password-sign-up").addClass("is-valid");
       $("#password-min-char-error").addClass("d-none");
       $("#password-blank-error").addClass("d-none");
       $("#local-part-email-password-error").addClass("d-none");
+      $("#most-insecure-passwords-error").addClass("d-none");
    }
 });
