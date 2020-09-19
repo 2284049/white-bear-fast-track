@@ -186,40 +186,84 @@ $("#lets-go").click(function () {
    const passwordLength = password.length;
    console.log(`The length of the password is: ${passwordLength}`);
 
+   // combining mostInsecurePasswords and secondMostInsecurePasswords
+   const allInsecurePasswords = mostInsecurePasswords.concat(
+      secondMostInsecurePasswords
+   );
+   console.log(`Entire list of insecure passwords:\n`, allInsecurePasswords);
+
+   const allFlatInsecurePasswords = allInsecurePasswords.flat();
+   console.log(
+      `Here's a list of all flat insecure passwords:\n `,
+      allFlatInsecurePasswords
+   );
+
+   const allUniqueInsecurePasswords = [...new Set(allFlatInsecurePasswords)];
+   console.log(
+      `Here's a list of all unique insecure passwords:\n `,
+      allUniqueInsecurePasswords
+   );
+
+   const firstSliceOfInsecurePasswords = allUniqueInsecurePasswords.slice(
+      0,
+      allUniqueInsecurePasswords.indexOf("skywalker")
+   );
+   console.log(
+      `Here is the first slice of unacceptable passwords:\n `,
+      firstSliceOfInsecurePasswords
+   );
+   const secondSliceOfInsecurePasswords = allUniqueInsecurePasswords.slice(
+      allUniqueInsecurePasswords.indexOf("1010101010"),
+      allUniqueInsecurePasswords.indexOf("obama2016")
+   );
+   console.log(
+      `Here is the second slice of unacceptable passwords:\n `,
+      secondSliceOfInsecurePasswords
+   );
+   const thirdSliceOfInsecurePasswords = allUniqueInsecurePasswords.slice(
+      allUniqueInsecurePasswords.indexOf("mypassword")
+   );
+   console.log(
+      `Here is the third slice of unacceptable passwords:\n `,
+      thirdSliceOfInsecurePasswords
+   );
+
+   const unacceptablePasswords = firstSliceOfInsecurePasswords.concat(
+      secondSliceOfInsecurePasswords,
+      thirdSliceOfInsecurePasswords
+   );
+   console.log(
+      `At long last, here is the final list of unacceptable passwords:\n`,
+      unacceptablePasswords
+   );
+
    if (passwordLength === 0) {
       $("#password-sign-up").addClass("is-invalid");
-      $("#password-blank-error").removeClass("d-none");
-      $("#password-min-char-error").addClass("d-none");
-      $("#local-part-email-password-error").addClass("d-none");
-      $("#most-insecure-passwords-error").addClass("d-none");
+      $("#password-error").removeClass("d-none");
+      $("#password-error").html("Please create a password.");
    } else if (passwordLength < 9 && passwordLength > 0) {
       $("#password-sign-up").addClass("is-invalid");
-      $("#password-min-char-error").removeClass("d-none");
-      $("#password-blank-error").addClass("d-none");
-      $("#local-part-email-password-error").addClass("d-none");
-      $("#most-insecure-passwords-error").addClass("d-none");
+      $("#password-error").removeClass("d-none");
+      $("#password-error").html("Your password must be at least 9 characters.");
    } else if (
       lowerCasedPassword.includes(localPartEmail) &&
       localPartEmailLength >= 4
    ) {
       $("#password-sign-up").addClass("is-invalid");
-      $("#password-min-char-error").addClass("d-none");
-      $("#password-blank-error").addClass("d-none");
-      $("#local-part-email-password-error").removeClass("d-none");
-      $("#most-insecure-passwords-error").addClass("d-none");
-   } else if (mostInsecurePasswords.includes(lowerCasedPassword)) {
+      $("#password-error").removeClass("d-none");
+      $("#password-error").html(
+         "All or part of your email address cannot be used in your password."
+      );
+   } else if (unacceptablePasswords.includes(lowerCasedPassword)) {
       $("#password-sign-up").addClass("is-invalid");
-      $("#password-min-char-error").addClass("d-none");
-      $("#password-blank-error").addClass("d-none");
-      $("#local-part-email-password-error").addClass("d-none");
-      $("#most-insecure-passwords-error").removeClass("d-none");
-      $("#insecure-password").html(lowerCasedPassword);
+      $("#password-error").removeClass("d-none");
+      $("#password-error").html(
+         `Your password contains a commonly used password, “${lowerCasedPassword}” and can be easily discovered by attackers. Please use something else.`
+      );
    } else {
       $("#password-sign-up").removeClass("is-invalid");
       $("#password-sign-up").addClass("is-valid");
-      $("#password-min-char-error").addClass("d-none");
-      $("#password-blank-error").addClass("d-none");
-      $("#local-part-email-password-error").addClass("d-none");
-      $("#most-insecure-passwords-error").addClass("d-none");
+      $("#password-error").addClass("d-none");
+      $("#password-error").html("");
    }
 });

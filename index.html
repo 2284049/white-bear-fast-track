@@ -62,39 +62,16 @@
                                  >Create a password</label
                               >
                               <input
-                                 type="email"
+                                 type="password"
                                  class="form-control"
                                  id="password-sign-up"
                               />
                               <p
                                  class="text-danger d-none"
-                                 id="password-min-char-error"
-                              >
-                                 Your password must be at least 9 characters.
-                              </p>
-                              <p
-                                 class="text-danger d-none"
-                                 id="password-blank-error"
-                              >
-                                 Please create a password.
-                              </p>
-                              <p
-                                 class="text-danger d-none"
-                                 id="local-part-email-password-error"
-                              >
-                                 All or part of your email address cannot be
-                                 used in your password.
-                              </p>
-                              <p
-                                 class="text-danger d-none"
-                                 id="most-insecure-passwords-error"
-                              >
-                                 Your password contains a commonly used
-                                 password, “<span id="insecure-password"></span
-                                 >” and can be easily discovered by attackers.
-                                 Please use something else.
-                              </p>
+                                 id="password-error"
+                              ></p>
                            </div>
+
                            <button
                               class="float-right btn btn-success btn-lg font-sans-serif"
                               style="width: 100%"
@@ -154,6 +131,8 @@
          defer
       ></script>
       <script src="/mostInsecurePasswords.js" defer></script>
+      <script src="/secondMostInsecurePasswords.js" defer></script>
+
       <script src="/script.js" defer></script>
    </body>
 </html>
