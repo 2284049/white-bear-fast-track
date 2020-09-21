@@ -165,15 +165,23 @@ $("#lets-go").click(function () {
       $("#enter-email-error").addClass("d-none");
    }
 
-   const delimiter = "@";
-   const indexOfEmailAtDelimiter = lowerCasedEmail.indexOf(delimiter);
-   const localPartEmail = lowerCasedEmail.slice(0, indexOfEmailAtDelimiter);
-   console.log(
-      `This is the user inputted local part of email: ${localPartEmail}`
-   );
+   // ONE WAY TO SEPARATE LOCAL PART OF EMAIL
+   // USING DELIMITER & SLICE METHOD
+   // const delimiter = "@";
+   // const indexOfEmailAtDelimiter = lowerCasedEmail.indexOf(delimiter);
+   // const localPartEmail = lowerCasedEmail.slice(0, indexOfEmailAtDelimiter);
+   // console.log(
+   //    `This is the user inputted local part of email: ${localPartEmail}`
+   // );
+   // const localPartEmailLength = localPartEmail.length;
+   // console.log(`The lenght of the local part of the inputted email is: `, localPartEmailLength);
 
-   const localPartEmailLength = localPartEmail.length;
-   console.log(`The lenght of the local part of the inputted email is: `);
+   // SECOND WAY TO SEPARATE LOCAL PART OF EMAIL
+   // USING SPLIT METHOD
+   const emailParts = lowerCasedEmail.split("@");
+   console.log(`Here is the lower cased email in parts: `, emailParts);
+   const localPartEmail = emailParts[0];
+   console.log(`Here is the local part of the email: `localPartEmail)
 
    const password = $("#password-sign-up").val();
    console.log(`The user inputted: ${password}`);
@@ -228,12 +236,73 @@ $("#lets-go").click(function () {
       thirdSliceOfInsecurePasswords
    );
 
-   const unacceptablePasswords = firstSliceOfInsecurePasswords.concat(
+   const unacceptablePasswordsWithBooleans = firstSliceOfInsecurePasswords.concat(
       secondSliceOfInsecurePasswords,
       thirdSliceOfInsecurePasswords
    );
    console.log(
-      `At long last, here is the final list of unacceptable passwords:\n`,
+      `At long last, here is the list of unacceptable passwords with Booleans and numbers:\n`,
+      unacceptablePasswordsWithBooleans
+   );
+
+   let unacceptablePasswordStrings = [];
+   for (let i = 0; i < unacceptablePasswordsWithBooleans.length; i++) {
+      const value = unacceptablePasswordsWithBooleans[i];
+      // remove the booleans and keep numbers and strings:
+      if (typeof value === "number" || typeof value === "string") {
+         // convert numbers to strings:
+         const numAsString = String(value);
+         unacceptablePasswordStrings = unacceptablePasswordStrings.concat(
+            numAsString
+         );
+      }
+   }
+   console.log(
+      `Here is a list of unacceptable password strings: `,
+      unacceptablePasswordStrings
+   );
+
+   let unacceptableReversedPasswords = [];
+   for (let i = 0; i < unacceptablePasswordStrings.length; i++) {
+      const unaccPassStr = unacceptablePasswordStrings[i];
+      const unaccPassStrChars = unaccPassStr.split("");
+      const copyOfUnaccPassChars = [...unaccPassStrChars];
+      const reverseUnaccPassChars = copyOfUnaccPassChars.reverse();
+      const newUnaccPassStr = reverseUnaccPassChars.join("");
+      unacceptableReversedPasswords = unacceptableReversedPasswords.concat(
+         newUnaccPassStr
+      );
+   }
+   console.log(
+      `Here are the reversed passwords: `,
+      unacceptableReversedPasswords
+   );
+
+   const unaccStrAndReversedPasswords = [
+      ...unacceptablePasswordStrings,
+      ...unacceptableReversedPasswords,
+   ];
+   console.log(
+      `Here are all the unacceptable password strings and reversed strings: `,
+      unaccStrAndReversedPasswords
+   );
+
+   let lowerCasedUnaccPasswords = [];
+   for (let i = 0; i < unaccStrAndReversedPasswords.length; i++) {
+      const unacceptablePassword = unaccStrAndReversedPasswords[i];
+      const lowerCasedUnaccPass = unacceptablePassword.toLowerCase();
+      lowerCasedUnaccPasswords = lowerCasedUnaccPasswords.concat(
+         lowerCasedUnaccPass
+      );
+   }
+   console.log(
+      `Here are the lower cased unacceptable passwords: `,
+      lowerCasedUnaccPasswords
+   );
+
+   const unacceptablePasswords = [...new Set(lowerCasedUnaccPasswords)];
+   console.log(
+      `Here's a list of all unique, reversed, lower cased passwords:\n `,
       unacceptablePasswords
    );
 
