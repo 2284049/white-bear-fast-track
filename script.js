@@ -19,11 +19,11 @@ $("#create-imagery-input").keyup(function (e) {
    console.log("Event: ", e);
    const text = e.target.value;
    console.log(`The user inputted: ${text}`);
-   if (text.length < 241 && text.length > 0) {
+   if (text.length <= maxChar && text.length > 0) {
       $("#save-card").removeAttr("disabled");
       $("#imagery-characters").removeClass("text-danger");
       $("#imagery-characters").addClass("text-muted");
-   } else if (text.length > 240) {
+   } else if (text.length > maxChar) {
       $("#save-card").attr("disabled", "disabled");
       $("#imagery-characters").removeClass("text-muted");
       $("#imagery-characters").addClass("text-danger");
@@ -39,11 +39,11 @@ $("#create-answer-input").keyup(function (e) {
    console.log("Event: ", e);
    const text = e.target.value;
    console.log(`The user inputted: ${text}`);
-   if (text.length < 241 && text.length > 0) {
+   if (text.length <= maxChar && text.length > 0) {
       $("#next").removeAttr("disabled");
       $("#answer-characters").removeClass("text-danger");
       $("#answer-characters").addClass("text-muted");
-   } else if (text.length > 240) {
+   } else if (text.length > maxChar) {
       $("#next").attr("disabled", "disabled");
       $("#answer-characters").removeClass("text-muted");
       $("#answer-characters").addClass("text-danger");
@@ -60,12 +60,12 @@ $("#edit-imagery-input, #edit-answer-input").keyup(function (e) {
    console.log(`The user inputted: ${imageryInput}`);
    const answerInput = $("#edit-answer-input").val();
    console.log(`The user inputted: ${answerInput}`);
-   if (imageryInput.length <= 240 && imageryInput.length >= 0) {
+   if (imageryInput.length <= maxChar && imageryInput.length >= 0) {
       $("#edit-imagery-characters").removeClass("text-danger");
    } else {
       $("#edit-imagery-characters").addClass("text-danger");
    }
-   if (answerInput.length < 241 && answerInput.length >= 0) {
+   if (answerInput.length <= maxChar && answerInput.length >= 0) {
       $("#edit-answer-characters").removeClass("text-danger");
    } else {
       $("#edit-answer-characters").addClass("text-danger");
@@ -73,16 +73,16 @@ $("#edit-imagery-input, #edit-answer-input").keyup(function (e) {
 
    if (
       imageryInput.length > 0 &&
-      imageryInput.length < 241 &&
+      imageryInput.length <= maxChar &&
       answerInput.length > 0 &&
-      answerInput.length < 241
+      answerInput.length <= maxChar
    ) {
       $("#edit-save").removeAttr("disabled");
    } else {
       $("#edit-save").attr("disabled", "disabled");
    }
    $("#edit-imagery-char-count").html(imageryInput.length);
-   $("#edit-answer-char-count").html(textLength);
+   $("#edit-answer-char-count").html(answerInput.length);
 });
 
 $("#lets-go").click(function () {
@@ -122,11 +122,6 @@ $("#lets-go").click(function () {
 
    const password = $("#password-sign-up").val();
    console.log(`The user inputted: ${password}`);
-
-   const lowerCasedPassword = password.toLowerCase();
-   console.log(
-      `The user inputted lower cased password is: ${lowerCasedPassword}`
-   );
 
    // combining mostInsecurePasswords and secondMostInsecurePasswords
    const allInsecurePasswords = mostInsecurePasswords.concat(
@@ -249,19 +244,19 @@ $("#lets-go").click(function () {
       $("#password-error").removeClass("d-none");
       $("#password-error").html("Your password must be at least 9 characters.");
    } else if (
-      lowerCasedPassword.includes(localPartEmail) &&
-      localPartEmailLength >= 4
+      password.toLowerCase().includes(localPartEmail) &&
+      localPartEmail.length >= 4
    ) {
       $("#password-sign-up").addClass("is-invalid");
       $("#password-error").removeClass("d-none");
       $("#password-error").html(
          "All or part of your email address cannot be used in your password."
       );
-   } else if (unacceptablePasswords.includes(lowerCasedPassword)) {
+   } else if (unacceptablePasswords.includes(password.toLowerCase())) {
       $("#password-sign-up").addClass("is-invalid");
       $("#password-error").removeClass("d-none");
       $("#password-error").html(
-         `Your password contains a commonly used password, “${lowerCasedPassword}” and can be easily discovered by attackers. Please use something else.`
+         `Your password contains a commonly used password, “${password.toLowerCase()}” and can be easily discovered by attackers. Please use something else.`
       );
    } else {
       $("#password-sign-up").removeClass("is-invalid");
@@ -270,23 +265,30 @@ $("#lets-go").click(function () {
       $("#password-error").html("");
    }
 
-   let createdAt = new Date(Date.now());
-   const year = createdAt.getFullYear();
-   const month = createdAt.getMonth();
-   const day = createdAt.getDate();
-   const hour = createdAt.getHours();
-   const minutes = createdAt.getMinutes();
-   const seconds = createdAt.getSeconds();
-   const milliseconds = createdAt.getMilliseconds();
+   let today = new Date(Date.now());
+   // to test other days:
+   //today = new Date(2020, 6, 2);
+   const year = today.getFullYear();
+   const month = today.getMonth();
+   const day = today.getDate();
+   const hour = today.getHours();
+   const minutes = today.getMinutes();
+   const seconds = today.getSeconds();
+   const milliseconds = today.getMilliseconds();
 
    const yearPart = String(year);
+
    const monthPart = String(month + 1);
-   const dayPart = String(day);
+   let paddedMonth = monthPart;
    if (monthPart.length < 2) {
-      let createdAt = yearPart + "0" + monthPart + dayPart;
-      console.log(`Created at: ${createdAt}`);
-   } else {
-      let createdAt = yearPart + monthPart + dayPart;
-      console.log(`Created at: ${createdAt}`);
+      paddedMonth = "0" + monthPart;
    }
+
+   const dayPart = String(day);
+   let paddedDay = dayPart;
+   if (dayPart.length < 2) {
+      paddedDay = "0" + dayPart;
+   }
+   const createdAt = yearPart + paddedMonth + paddedDay;
+   console.log(`Created at: ${createdAt}`);
 });
