@@ -136,32 +136,21 @@ function getPasswordError(email, password) {
    );
 
    if (password.length === 0) {
-      $("#password-sign-up").addClass("is-invalid");
-      $("#password-error").removeClass("d-none");
-      $("#password-error").html("Please create a password.");
+      return "Please create a password.";
    } else if (password.length < 9) {
-      $("#password-sign-up").addClass("is-invalid");
-      $("#password-error").removeClass("d-none");
-      $("#password-error").html("Your password must be at least 9 characters.");
+      return "Your password must be at least 9 characters.";
    } else if (
       lowerCasedPassword.includes(localPartEmail) &&
       localPartEmail.length >= 4
    ) {
-      $("#password-sign-up").addClass("is-invalid");
-      $("#password-error").removeClass("d-none");
-      $("#password-error").html(
-         "All or part of your email address cannot be used in your password."
-      );
+      return "All or part of your email address cannot be used in your password.";
    } else if (unacceptablePasswords.includes(lowerCasedPassword)) {
-      $("#password-sign-up").addClass("is-invalid");
-      $("#password-error").removeClass("d-none");
-      $("#password-error").html(
-         `Your password contains a commonly used password, “${lowerCasedPassword}” and can be easily discovered by attackers. Please use something else.`
-      );
+      return `Your password contains a commonly used password, “${lowerCasedPassword}” and can be easily discovered by attackers. Please use something else.`;
    } else {
-      $("#password-sign-up").removeClass("is-invalid");
-      $("#password-sign-up").addClass("is-valid");
-      $("#password-error").addClass("d-none");
-      $("#password-error").html("");
+      // $("#password-sign-up").removeClass("is-invalid");
+      // $("#password-sign-up").addClass("is-valid");
+      // $("#password-error").addClass("d-none");
+      // $("#password-error").html("");
+      return "";
    }
 }

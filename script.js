@@ -86,53 +86,66 @@
 // });
 
 $("#lets-go").click(function () {
-   const email = $("#email-sign-up").val();
-   const password = $("#password-sign-up").val();
+   const email = $("#email-sign-up-input").val();
+   const password = $("#password-sign-up-input").val();
 
-   const isEmailInvalid = getEmailError(email);
-   if (isEmailInvalid) {
-      showErrorValidation(
-         "#new-user-email-error",
-         "Please enter your email address."
-      );
-      $("#email-sign-up").addClass("is-invalid");
+   const emailError = getEmailError(email); // emailError = whatever return it gets when it executes that function
+   console.log(emailError);
+   if (emailError) {
+      showErrorValidation("#email-sign-up", emailError);
    } else {
-      $("#email-sign-up").removeClass("is-invalid");
-      $("#email-sign-up").addClass("is-valid");
-      showErrorValidation("#new-user-email-error", "");
+      hideErrorValidation("#email-sign-up");
    }
 
-   const passwordError = getPasswordError(email, password);
+   const passwordError = getPasswordError(email, password); // passwordError = whatever return it gets when it executes that function
    console.log(passwordError);
+   if (passwordError !== "") {
+      showErrorValidation("#password-sign-up", passwordError);
+   } else {
+      hideErrorValidation("#password-sign-up");
+   }
 
    let today = new Date(Date.now());
    // to test other days:
-   //today = new Date(2020, 6, 2);
+   today = new Date(2020, 6, 2);
    const year = today.getFullYear();
    const month = today.getMonth();
    const day = today.getDate();
-   const hour = today.getHours();
-   const minutes = today.getMinutes();
-   const seconds = today.getSeconds();
-   const milliseconds = today.getMilliseconds();
-
    const yearPart = String(year);
-
    const monthPart = String(month + 1);
-   let paddedMonth = monthPart;
-   if (monthPart.length < 2) {
-      paddedMonth = "0" + monthPart;
-   }
-
    const dayPart = String(day);
-   let paddedDay = dayPart;
-   if (dayPart.length < 2) {
-      paddedDay = "0" + dayPart;
+   const isMonthOneDigit = checkDatePartLength(monthPart);
+   if (isMonthOneDigit) {
+      paddedMonthPart = padDatePart(monthPart);
+   } else {
+      paddedMonthPart = monthPart;
    }
-   const createdAt = yearPart + paddedMonth + paddedDay;
+   const isDayOneDigit = checkDatePartLength(dayPart);
+   if (isDayOneDigit) {
+      paddedDayPart = padDatePart(dayPart);
+   } else {
+      paddedDayPart = dayPart;
+   }
+   const createdAt = yearPart + paddedMonthPart + paddedDayPart;
    console.log(`Created at: ${createdAt}`);
 });
 
-function showErrorValidation(id, message) {
-   $(id).html(message);
+function padDatePart(datePart) {
+   return "0" + datePart;
+}
+
+function checkDatePartLength(datePart) {
+   return datePart.length < 2;
+}
+
+function showErrorValidation(pizza, banana) {
+   $(`${pizza}-input`).addClass("is-invalid");
+   $(`${pizza}-error`).removeClass("d-none");
+   $(`${pizza}-error`).html(banana);
+}
+
+function hideErrorValidation(pizza) {
+   $(`${pizza}-input`).addClass("is-valid");
+   $(`${pizza}-input`).removeClass("is-invalid");
+   $(`${pizza}-error`).addClass("d-none");
 }
