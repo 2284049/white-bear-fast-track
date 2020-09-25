@@ -1,108 +1,83 @@
-// const maxChar = 240;
-// $("#save-card").click(function () {
-//    $("#overlay-success").toggleClass("d-flex d-none");
-// });
-// $("#back-to-answer").click(function () {
-//    $("#overlay-error").toggleClass("d-flex d-none");
-// });
+const maxChar = 240;
+$("#save-card").click(function () {
+   showOverlay("#overlay-success");
+});
+$("#back-to-answer").click(function () {
+   showOverlay("#overlay-error");
+});
 
-// $("#show-delete").click(function () {
-//    $("#delete-button").removeClass("d-none");
-// });
+$("#show-delete").click(function () {
+   showHiddenElement("#delete-button");
+});
 
-// $("#sign-up-button").click(function () {
-//    $("#intro-card").addClass("d-none");
-//    $("#create-account-card").removeClass("d-none");
-// });
+$("#sign-up-button").click(function () {
+   hideElement("#intro-card");
+   showHiddenElement("#create-account-card");
+});
 
-// $("#create-imagery-input").keyup(function (e) {
-//    console.log("Event: ", e);
-//    const text = e.target.value;
-//    console.log(`The user inputted: ${text}`);
-//    if (text.length <= maxChar && text.length > 0) {
-//       $("#save-card").removeAttr("disabled");
-//       $("#imagery-characters").removeClass("text-danger");
-//       $("#imagery-characters").addClass("text-muted");
-//    } else if (text.length > maxChar) {
-//       $("#save-card").attr("disabled", "disabled");
-//       $("#imagery-characters").removeClass("text-muted");
-//       $("#imagery-characters").addClass("text-danger");
-//    } else if (text.length === 0) {
-//       $("#save-card").attr("disabled", "disabled");
-//       $("#imagery-characters").removeClass("text-danger");
-//       $("#imagery-characters").addClass("text-muted");
-//    }
-//    $("#imagery-char-count").html(text.length);
-// });
+$("#create-imagery-input").keyup(function () {
+   const imageryInput = $("#create-imagery-input").val();
+   console.log(`The user inputted: ${imageryInput}`);
+   styleCardCreationValidation(
+      imageryInput,
+      "#imagery-characters",
+      "#imagery-char-count",
+      "#save-card"
+   );
+});
 
-// $("#create-answer-input").keyup(function (e) {
-//    console.log("Event: ", e);
-//    const text = e.target.value;
-//    console.log(`The user inputted: ${text}`);
-//    if (text.length <= maxChar && text.length > 0) {
-//       $("#next").removeAttr("disabled");
-//       $("#answer-characters").removeClass("text-danger");
-//       $("#answer-characters").addClass("text-muted");
-//    } else if (text.length > maxChar) {
-//       $("#next").attr("disabled", "disabled");
-//       $("#answer-characters").removeClass("text-muted");
-//       $("#answer-characters").addClass("text-danger");
-//    } else if (text.length === 0) {
-//       $("#next").attr("disabled", "disabled");
-//       $("#answer-characters").removeClass("text-danger");
-//       $("#answer-characters").addClass("text-muted");
-//    }
-//    $("#answer-char-count").html(text.length);
-// });
+$("#create-answer-input").keyup(function () {
+   const answerInput = $("#create-answer-input").val();
+   console.log(`The user inputted: ${answerInput}`);
+   styleCardCreationValidation(
+      answerInput,
+      "#answer-characters",
+      "#answer-char-count",
+      "#next"
+   );
+});
 
-// $("#edit-imagery-input, #edit-answer-input").keyup(function (e) {
-//    const imageryInput = $("#edit-imagery-input").val();
-//    console.log(`The user inputted: ${imageryInput}`);
-//    const answerInput = $("#edit-answer-input").val();
-//    console.log(`The user inputted: ${answerInput}`);
-//    if (imageryInput.length <= maxChar && imageryInput.length >= 0) {
-//       $("#edit-imagery-characters").removeClass("text-danger");
-//    } else {
-//       $("#edit-imagery-characters").addClass("text-danger");
-//    }
-//    if (answerInput.length <= maxChar && answerInput.length >= 0) {
-//       $("#edit-answer-characters").removeClass("text-danger");
-//    } else {
-//       $("#edit-answer-characters").addClass("text-danger");
-//    }
+$("#edit-imagery-input, #edit-answer-input").keyup(function () {
+   const imageryInput = $("#edit-imagery-input").val();
+   console.log(`The user inputted: ${imageryInput}`);
+   const answerInput = $("#edit-answer-input").val();
+   console.log(`The user inputted: ${answerInput}`);
+   checkIsOver(imageryInput, maxChar, "#edit-imagery-characters");
+   checkIsOver(answerInput, maxChar, "#edit-answer-characters");
 
-//    if (
-//       imageryInput.length > 0 &&
-//       imageryInput.length <= maxChar &&
-//       answerInput.length > 0 &&
-//       answerInput.length <= maxChar
-//    ) {
-//       $("#edit-save").removeAttr("disabled");
-//    } else {
-//       $("#edit-save").attr("disabled", "disabled");
-//    }
-//    $("#edit-imagery-char-count").html(imageryInput.length);
-//    $("#edit-answer-char-count").html(answerInput.length);
-// });
+   if (
+      imageryInput.length > 0 &&
+      imageryInput.length <= maxChar &&
+      answerInput.length > 0 &&
+      answerInput.length <= maxChar
+   ) {
+      $("#edit-save").removeAttr("disabled");
+   } else {
+      $("#edit-save").attr("disabled", "disabled");
+   }
+   updateCharCount("#edit-imagery-char-count", imageryInput);
+   updateCharCount("#edit-answer-char-count", answerInput);
+});
 
 $("#lets-go").click(function () {
-   const email = $("#email-sign-up-input").val();
+   const emailInput = $("#email-sign-up-input").val();
+   const email = emailInput.trim().toLowerCase();
    const password = $("#password-sign-up-input").val();
 
    const emailError = getEmailError(email); // emailError = whatever return it gets when it executes that function
    console.log(emailError);
    if (emailError) {
-      showErrorValidation("#email-sign-up", emailError);
+      showError("#email-sign-up", emailError);
    } else {
-      hideErrorValidation("#email-sign-up");
+      hideError("#email-sign-up", emailError);
    }
 
    const passwordError = getPasswordError(email, password); // passwordError = whatever return it gets when it executes that function
    console.log(passwordError);
    if (passwordError !== "") {
-      showErrorValidation("#password-sign-up", passwordError);
+      showError("#password-sign-up", passwordError);
    } else {
-      hideErrorValidation("#password-sign-up");
+      hideError("#password-sign-up", passwordError);
    }
 
    let today = new Date(Date.now());
@@ -138,14 +113,59 @@ function checkDatePartLength(datePart) {
    return datePart.length < 2;
 }
 
-function showErrorValidation(pizza, banana) {
-   $(`${pizza}-input`).addClass("is-invalid");
-   $(`${pizza}-error`).removeClass("d-none");
-   $(`${pizza}-error`).html(banana);
+function showError(element, errorMessage) {
+   $(`${element}-input`).addClass("is-invalid");
+   $(`${element}-error`).removeClass("d-none");
+   $(`${element}-error`).html(errorMessage);
 }
 
-function hideErrorValidation(pizza) {
-   $(`${pizza}-input`).addClass("is-valid");
-   $(`${pizza}-input`).removeClass("is-invalid");
-   $(`${pizza}-error`).addClass("d-none");
+function hideError(element, errorMessage) {
+   $(`${element}-input`).removeClass("is-invalid");
+   $(`${element}-error`).html(errorMessage);
+}
+
+function showHiddenElement(id) {
+   $(id).removeClass("d-none");
+}
+
+function hideElement(id) {
+   $(id).addClass("d-none");
+}
+
+function styleCardCreationValidation(
+   inputname,
+   inputcharsid,
+   inputcharactercountid,
+   buttonid
+) {
+   if (inputname.length <= maxChar && inputname.length > 0) {
+      $(buttonid).removeAttr("disabled");
+      $(inputcharsid).removeClass("text-danger");
+      $(inputcharsid).addClass("text-muted");
+   } else if (inputname.length > maxChar) {
+      $(buttonid).attr("disabled", "disabled");
+      $(inputcharsid).removeClass("text-muted");
+      $(inputcharsid).addClass("text-danger");
+   } else if (inputname.length === 0) {
+      $(buttonid).attr("disabled", "disabled");
+      $(inputcharsid).removeClass("text-danger");
+      $(inputcharsid).addClass("text-muted");
+   }
+   $(inputcharactercountid).html(inputname.length);
+}
+
+function checkIsOver(input, num, charactercount) {
+   if (input.length > num) {
+      $(charactercount).addClass("text-danger");
+   } else {
+      $(charactercount).removeClass("text-danger");
+   }
+}
+
+function updateCharCount(id, input) {
+   $(id).html(input.length);
+}
+
+function showOverlay(id) {
+   $(id).toggleClass("d-flex d-none");
 }
