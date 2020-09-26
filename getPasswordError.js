@@ -18,10 +18,6 @@ function getPasswordError(email, password) {
    } else if (unacceptablePasswords.includes(lowerCasedPassword)) {
       return `Your password contains a commonly used password, “${lowerCasedPassword}” and can be easily discovered by attackers. Please use something else.`;
    } else {
-      // $("#password-sign-up").removeClass("is-invalid");
-      // $("#password-sign-up").addClass("is-valid");
-      // $("#password-error").addClass("d-none");
-      // $("#password-error").html("");
       return "";
    }
 }

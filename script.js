@@ -66,7 +66,7 @@ $("#lets-go").click(function () {
 
    const emailError = getEmailError(email); // emailError = whatever return it gets when it executes that function
    console.log(emailError);
-   if (emailError) {
+   if (emailError !== "") {
       showError("#email-sign-up", emailError);
    } else {
       hideError("#email-sign-up", emailError);
@@ -80,42 +80,36 @@ $("#lets-go").click(function () {
       hideError("#password-sign-up", passwordError);
    }
 
+   const createdAt = getCreatedAt();
+   console.log(`Created at: ${createdAt}`);
+});
+
+function getCreatedAt() {
    let today = new Date(Date.now());
    // to test other days:
-   today = new Date(2020, 6, 2);
+   //today = new Date(2020, 6, 2);
    const year = today.getFullYear();
    const month = today.getMonth();
    const day = today.getDate();
    const yearPart = String(year);
    const monthPart = String(month + 1);
    const dayPart = String(day);
-   const isMonthOneDigit = checkDatePartLength(monthPart);
-   if (isMonthOneDigit) {
-      paddedMonthPart = padDatePart(monthPart);
-   } else {
-      paddedMonthPart = monthPart;
-   }
-   const isDayOneDigit = checkDatePartLength(dayPart);
-   if (isDayOneDigit) {
-      paddedDayPart = padDatePart(dayPart);
-   } else {
-      paddedDayPart = dayPart;
-   }
-   const createdAt = yearPart + paddedMonthPart + paddedDayPart;
-   console.log(`Created at: ${createdAt}`);
-});
-
-function padDatePart(datePart) {
-   return "0" + datePart;
+   const paddedMonth = padLeft(monthPart);
+   const paddedDay = padLeft(dayPart);
+   const createdAt = yearPart + paddedMonth + paddedDay;
+   return createdAt;
 }
 
-function checkDatePartLength(datePart) {
-   return datePart.length < 2;
+function padLeft(datePart) {
+   if (datePart.length < 2) {
+      return "0" + datePart;
+   } else {
+      return datePart;
+   }
 }
 
 function showError(element, errorMessage) {
    $(`${element}-input`).addClass("is-invalid");
-   $(`${element}-error`).removeClass("d-none");
    $(`${element}-error`).html(errorMessage);
 }
 
