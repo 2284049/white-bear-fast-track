@@ -4,7 +4,7 @@ function getPasswordError(email, password) {
    const lowerCasedPassword = password.toLowerCase();
 
    const unacceptablePasswords = getAllUnacceptablePasswords(); //return a list
-   console.log(unacceptablePasswords);
+   // console.log(unacceptablePasswords);
 
    if (password.length === 0) {
       return "Please create a password.";

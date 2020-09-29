@@ -80,33 +80,36 @@ $("#lets-go").click(function () {
       hideError("#password-sign-up", passwordError);
    }
 
+   console.log(`User inputted email: ${email}`);
+   console.log(`User inputted password: ${password}`);
+
    const createdAt = getCreatedAt();
    console.log(`Created at: ${createdAt}`);
 
    const id = createRandomID();
-
    console.log(`The random user ID is: ${id}`);
 
-   // Create an id for new users
-   // When the user clicks “Let’s Go” on sign up, create a
-   // const called id and store a unique id string.
-   // Generate the id by concatenating a random number with
-   // the current milliseconds at the time the user clicked
-   // the button. The random number should be between 0 and 999.
-   // After you concatenate, return a string that you assign to the const id.
-   // For example, a random number of 42 and the current
-   // milliseconds of 5 should return a string of “425”.
-   // 3 and 0 should return “30”. 702 and 900 should return “702900”.
-   // Console.log id.
+   const user = {
+      email: email,
+      password: password,
+      createdAt: createdAt,
+      id: id,
+   };
+
+   if (passwordError === "" && emailError === "") {
+      console.log(user);
+   }
 });
 
 function createRandomID() {
    let today = new Date(Date.now());
    const milliseconds = String(today.getMilliseconds());
+   const paddedMS = milliseconds.padStart(3, "0");
    const randomNum = String(getRandomInt(0, 999));
-   const randomID = randomNum + milliseconds;
-   console.log(`The random number for the id is: ${randomNum}`);
-   console.log(`The milliseconds for the id is: ${milliseconds}`);
+   const paddedRandomNum = randomNum.padStart(3, "0");
+   const randomID = paddedRandomNum + paddedMS;
+   console.log(`The padded random number for the id is: ${paddedRandomNum}`);
+   console.log(`The padded milliseconds for the id is: ${paddedMS}`);
    return randomID;
 }
 
@@ -127,7 +130,7 @@ function getCreatedAt() {
    const paddedMonth = padLeft(monthPart);
    const paddedDay = padLeft(dayPart);
    const createdAt = yearPart + paddedMonth + paddedDay;
-   return createdAt;
+   return Number(createdAt);
 }
 
 function padLeft(datePart) {
