@@ -94,12 +94,61 @@ $("#lets-go").click(function () {
       password: password,
       createdAt: createdAt,
       id: id,
+      emailTld: getTld(email),
+      socialProfiles: [
+         {
+            site: "facebook",
+            siteId: "530c2716-36e2-4a80-93b7-0e8483d629e1",
+            username: "",
+            image: {
+               sm: "",
+               orig: "",
+            },
+         },
+         {
+            site: "twitter",
+            siteId: "79023b4d-57a2-406b-8efe-bda47fb1696c",
+            username: "",
+            image: {
+               sm: "",
+               md: "",
+               orig: "",
+            },
+         },
+      ],
    };
+
+   activeUser = makeDeepCopySafely(user);
+   if (activeUser !== undefined) {
+      activeUser.isActive = true;
+      activeUser.createdAt = Date.now();
+      delete activeUser.socialProfiles[0].image["sm"];
+      delete activeUser.socialProfiles[1].image["sm"];
+      delete activeUser.socialProfiles[1].image["md"];
+   }
 
    if (passwordError === "" && emailError === "") {
       console.log(user);
+      console.log(`Active User Properties: `, activeUser);
    }
 });
+
+function makeDeepCopySafely(obj) {
+   const str = JSON.stringify(obj);
+   return safelyParseJson(str);
+}
+function safelyParseJson(str) {
+   try {
+      JSON.parse(str);
+   } catch {
+      return str;
+   }
+   return JSON.parse(str);
+}
+
+function getTld(email) {
+   return email.slice(email.lastIndexOf(".") + 1);
+}
 
 function createRandomID() {
    let today = new Date(Date.now());
