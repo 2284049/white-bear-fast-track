@@ -4,7 +4,7 @@ function getPasswordError(email, password) {
    const lowerCasedPassword = password.toLowerCase();
 
    const unacceptablePasswords = getAllUnacceptablePasswords(); //return a list
-   // console.log(unacceptablePasswords);
+   console.log(unacceptablePasswords);
 
    if (password.length === 0) {
       return "Please create a password.";
@@ -52,29 +52,49 @@ function getAllUnacceptablePasswords() {
       thirdSliceOfInsecurePasswords
    );
 
+   // let unacceptablePasswordStrings = [];
+   // for (let i = 0; i < unacceptablePasswordsWithBooleans.length; i++) {
+   //    const value = unacceptablePasswordsWithBooleans[i];
+   //    // remove the booleans and keep numbers and strings:
+   //    if (typeof value === "number" || typeof value === "string") {
+   //       // convert numbers to strings:
+   //       unacceptablePasswordStrings = unacceptablePasswordStrings.concat(
+   //          String(value)
+   //       );
+   //    }
+   // }
    let unacceptablePasswordStrings = [];
-   for (let i = 0; i < unacceptablePasswordsWithBooleans.length; i++) {
-      const value = unacceptablePasswordsWithBooleans[i];
-      // remove the booleans and keep numbers and strings:
-      if (typeof value === "number" || typeof value === "string") {
-         // convert numbers to strings:
+   unacceptablePasswordsWithBooleans.forEach((password) => {
+      if (typeof password === "number" || typeof password === "string") {
          unacceptablePasswordStrings = unacceptablePasswordStrings.concat(
-            String(value)
+            String(password)
          );
       }
-   }
+   });
+   // console.log(
+   //    `Unacceptable password strings without booleans: `,
+   //    unacceptablePasswordStrings
+   // );
+
+   // let unacceptableReversedPasswords = [];
+   // for (let i = 0; i < unacceptablePasswordStrings.length; i++) {
+   //    const unaccPassStr = unacceptablePasswordStrings[i];
+   //    const unaccPassStrChars = unaccPassStr.split("");
+   //    const copyOfUnaccPassChars = [...unaccPassStrChars];
+   //    const reverseUnaccPassChars = copyOfUnaccPassChars.reverse();
+   //    const newUnaccPassStr = reverseUnaccPassChars.join("");
+   //    unacceptableReversedPasswords = unacceptableReversedPasswords.concat(
+   //       newUnaccPassStr
+   //    );
+   // }
 
    let unacceptableReversedPasswords = [];
-   for (let i = 0; i < unacceptablePasswordStrings.length; i++) {
-      const unaccPassStr = unacceptablePasswordStrings[i];
-      const unaccPassStrChars = unaccPassStr.split("");
-      const copyOfUnaccPassChars = [...unaccPassStrChars];
-      const reverseUnaccPassChars = copyOfUnaccPassChars.reverse();
-      const newUnaccPassStr = reverseUnaccPassChars.join("");
+   unacceptablePasswordStrings.forEach((password) => {
+      unacceptableReversedPassword = toReverse(password);
       unacceptableReversedPasswords = unacceptableReversedPasswords.concat(
-         newUnaccPassStr
+         unacceptableReversedPassword
       );
-   }
+   });
 
    const unaccStrAndReversedPasswords = [
       ...unacceptablePasswordStrings,
@@ -82,14 +102,51 @@ function getAllUnacceptablePasswords() {
    ];
 
    let lowerCasedUnaccPasswords = [];
-   for (let i = 0; i < unaccStrAndReversedPasswords.length; i++) {
-      const unacceptablePassword = unaccStrAndReversedPasswords[i];
-      const lowerCasedUnaccPass = unacceptablePassword.toLowerCase();
+   unaccStrAndReversedPasswords.forEach((password) => {
+      const lowerCasedUnaccPass = password.toLowerCase();
       lowerCasedUnaccPasswords = lowerCasedUnaccPasswords.concat(
          lowerCasedUnaccPass
       );
-   }
+   });
 
-   const allUnacceptablePasswords = [...new Set(lowerCasedUnaccPasswords)];
+   const combinedUnacceptablePasswords = [
+      ...moreInsecurePasswords,
+      ...lowerCasedUnaccPasswords,
+   ];
+
+   const nineCharUnaccPasswords = combinedUnacceptablePasswords.filter(
+      (password) => {
+         return password.length >= 9;
+      }
+   );
+   console.log(
+      `Here are unacceptable passwords 9 characters or longer: `,
+      nineCharUnaccPasswords
+   );
+
+   //    const allUnacceptablePasswords = [...new Set(combinedUnacceptablePasswords)];
+   //    return allUnacceptablePasswords;
+
+   let allUnacceptablePasswords = [];
+   nineCharUnaccPasswords.forEach((password) => {
+      if (allUnacceptablePasswords.includes(password) === false) {
+         allUnacceptablePasswords = allUnacceptablePasswords.concat(password);
+      }
+   });
    return allUnacceptablePasswords;
+}
+
+function toReverse(str) {
+   if (str === "") {
+      throw Error("String cannot be empty.");
+   }
+   try {
+      const chars = str.split(""); // returns ["H", "e", "l", "l", "o"]
+      const copyOfChars = [...chars]; // returns ["H", "e", "l", "l", "o"]
+      const reversedChars = copyOfChars.reverse(); // returns ["o", "l", "l", "e", "H"]
+      const reversedStr = reversedChars.join(""); // returns [olleH]
+      return reversedStr;
+   } catch {
+      return "Error: there is a problem with toReverse().";
+   }
 }
