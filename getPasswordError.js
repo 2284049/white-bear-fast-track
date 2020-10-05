@@ -6,6 +6,16 @@ function getPasswordError(email, password) {
    const unacceptablePasswords = getAllUnacceptablePasswords(); //return a list
    console.log(unacceptablePasswords);
 
+   const isMinNineChars = unacceptablePasswords.every((password) => {
+      return password.length >= 9;
+   });
+   console.log(`Every password is at least 9 characters: `, isMinNineChars);
+
+   const hasQwertyInPassword = unacceptablePasswords.some((password) => {
+      return password.includes("qwerty");
+   });
+   console.log(`Do any passwords contain "qwerty"? `, hasQwertyInPassword);
+
    if (password.length === 0) {
       return "Please create a password.";
    } else if (password.length < 9) {
