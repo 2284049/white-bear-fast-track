@@ -44,9 +44,10 @@ console.log(`The most recent user who signed-up is: `, mostRecentSignUp);
 
 const dupUserIndex = dbUsers
    .map((user) => {
-      return user.id; // ["Margaret Atwood", "Philip Roth", "Franz Kafka", "Franz Kafka", "Philip Roth"]
+      return user.id;
    })
    .findIndex((user, index, arr) => {
+      // findIndex for something passes a test
       return arr.indexOf(user) !== index;
    });
 console.log(`The duplicate user index is: `, dupUserIndex);
