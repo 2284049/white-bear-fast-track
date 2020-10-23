@@ -7,7 +7,7 @@ $("#back-to-answer").click(function () {
 });
 
 $("#show-delete").click(function () {
-   showHiddenElement("#delete-button");
+   $("#delete-button").removeClass("d-none");
 });
 
 $("#sign-up-button").click(function () {
@@ -145,6 +145,8 @@ $("#lets-go").click(function () {
 
    const currentUser = currentUsers[0];
    if (passwordError === "" && emailError === "") {
+      window.location.href =
+         "http://dispensable-island.surge.sh/create-answer.html";
       console.log(`The current user is: `, currentUser);
    }
 });
@@ -222,10 +224,6 @@ function showError(element, errorMessage) {
 function hideError(element, errorMessage) {
    $(`${element}-input`).removeClass("is-invalid");
    $(`${element}-error`).html(errorMessage);
-}
-
-function showHiddenElement(id) {
-   $(id).removeClass("d-none");
 }
 
 function hideElement(id) {

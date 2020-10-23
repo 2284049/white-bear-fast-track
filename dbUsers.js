@@ -52,7 +52,7 @@ const dupUserIndex = dbUsers
    });
 console.log(`The duplicate user index is: `, dupUserIndex);
 
-const uniqDbUsers = dbUsers.filter((author, index, arr) => {
-   return arr.indexOf(author) !== dupUserIndex;
+const uniqDbUsers = dbUsers.filter((user, index, arr) => {
+   return arr.indexOf(user) !== dupUserIndex;
 });
 console.log(`The unique users include: `, uniqDbUsers);
